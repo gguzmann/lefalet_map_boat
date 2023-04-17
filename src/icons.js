@@ -9,8 +9,8 @@ export const iconLocation = L.icon({
 })
 
 export const customMarker = L.icon({
-  iconUrl: './src/assets/pirate.png',
-  iconRetinaUrl: './src/assets/pirate.png',
+  iconUrl: '/src/assets/pirate.png',
+  iconRetinaUrl: '/src/assets/pirate.png',
   iconSize: [60, 30]
 
 })
