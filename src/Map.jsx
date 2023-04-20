@@ -1,46 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, GeoJSON, Polyline, Marker, Polygon, useMapEvent } from 'react-leaflet'
+import { MapContainer, TileLayer, GeoJSON, Polyline, Marker } from 'react-leaflet'
 import oceans from './oceans.json'
 import continent from './continent.json'
 import { socket } from './socket'
 import { BoatPrefab } from './BoatPrefab'
-import * as turf from '@turf/turf'
+import { ClickMove } from './components/ClickMove'
+
 const Map = () => {
   const [boats, setBoats] = useState([])
   const [move, setMove] = useState(false)
   const [path, setPath] = useState([])
   const [prePath, setPrePath] = useState([])
   const [colorPath, setColorPath] = useState('red')
-
-  const ClickMove = () => {
-    useMapEvent({
-      click: (e) => {
-        if (move) return false
-        setPrePath([[boats[0].position.lat, boats[0].position.lng], [e.latlng.lat, e.latlng.lng]])
-        const arr = []
-        const path = turf.lineString([[boats[0].position.lat, boats[0].position.lng], [e.latlng.lat, e.latlng.lng]])
-        continent.features.forEach(feature => {
-          const cantMove = feature.geometry.coordinates.map(x => {
-            const data = x[0].map(y => [y[1], y[0]])
-            const poly = turf.polygon([data])
-            const test = turf.lineIntersect(path, poly)
-            const intersArray = test.features.map(d => d.geometry.coordinates)
-            // console.log('test', intersArray)
-            if (intersArray.length === 0) return 1
-            return 0
-          })
-          arr.push(cantMove.some(x => x === 0))
-        })
-
-        if (!arr.includes(true)) {
-          socket.emit('newPosition', { coords: e.latlng })
-          setColorPath('lime')
-        } else {
-          setColorPath('red')
-        }
-      }
-    })
-  }
 
   useEffect(() => {
     const showBoats = (data, playerId) => {
@@ -79,7 +50,12 @@ const Map = () => {
 
         {/* <GeoJSON data={oceans} eventHandlers={{ click: (e) => clickMove(e) }} /> */}
         <GeoJSON data={continent} />
-        <ClickMove />
+        <ClickMove
+          setPrePath={setPrePath}
+          setColorPath={setColorPath}
+          boats={boats}
+          move={move}
+        />
       </MapContainer>
     </>
   )

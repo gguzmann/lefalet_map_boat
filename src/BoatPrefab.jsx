@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { LeafletTrackingMarker } from 'react-leaflet-tracking-marker'
 import { Popup } from 'react-leaflet'
 import { enemyIcon, playerIcon } from './icons'
-import * as turf from '@turf/turf'
-import { socket } from './socket'
 
 export const BoatPrefab = ({ data, player, move, setMove, setPath }) => {
   const { lat, lng } = data
