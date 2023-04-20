@@ -31,10 +31,10 @@ const Map = () => {
     })
   }, [])
 
-  const center = [51.505, -0.09]
+  const center = [13.408904896098697, -77.69531250000001]
   return (
     <>
-      <MapContainer id='map' center={center} zoom={3} scrollWheelZoom={false}>
+      <MapContainer id='map' center={center} zoom={6} scrollWheelZoom={false} zoomControl={false}>
         {/* <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png'
