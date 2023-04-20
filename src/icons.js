@@ -12,9 +12,19 @@ export const customMarker = L.icon({
   iconUrl: './pirate.png',
   iconRetinaUrl: './pirate.png',
   iconSize: [60, 30]
-
 })
 
+export const enemyIcon = L.icon({
+  iconUrl: './pirate.png',
+  iconRetinaUrl: './pirate.png',
+  iconSize: [60, 30]
+})
+
+export const playerIcon = L.icon({
+  iconUrl: './ship.png',
+  iconRetinaUrl: './ship.png',
+  iconSize: [60, 30]
+})
 // export const VenueLocationIcon = L.icon({
 //     iconUrl: require('../assets/venue_location_icon.svg'),
 //     iconRetinaUrl: require('../assets/venue_location_icon.svg'),

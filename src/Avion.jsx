@@ -29,11 +29,11 @@ export const Avion = ({ data, camino, position, setCamino, move, setMove }) => {
 
       const markerPosition = [marker.current._latlng.lat, marker.current._latlng.lng]
       const clickPosition = [position.lat, position.lng]
-      console.log(markerPosition, clickPosition)
+      // console.log(markerPosition, clickPosition)
 
-      console.log(markerPosition[0] == clickPosition[0] && markerPosition[1] == clickPosition[1])
+      // console.log(markerPosition[0] == clickPosition[0] && markerPosition[1] == clickPosition[1])
       if (markerPosition[0] == clickPosition[0] && markerPosition[1] == clickPosition[1]) {
-        console.log('FINAL')
+        // console.log('FINAL')
         setMove(false)
         setCamino([])
         setCamino([])
