@@ -44,7 +44,7 @@ const Map = () => {
           boats.map(boat => <BoatPrefab key={boat.id} data={boat.position} player={boat.player} move={move} setMove={setMove} setPath={setPath} />)
         }
 
-        <Marker position={center} draggable />
+        {/* <Marker position={center} draggable /> */}
         <Polyline positions={path} dashArray={10} />
         <Polyline positions={prePath} dashArray={10} pathOptions={{ color: colorPath }} />
 

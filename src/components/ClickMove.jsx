@@ -6,6 +6,7 @@ import { socket } from '../socket'
 export const ClickMove = ({ setColorPath, setPrePath, boats, move }) => {
   useMapEvent({
     click: (e) => {
+    //   console.log([e.latlng.lat, e.latlng.lng])
       if (move) return false
       const boat = boats.find(x => x.id === socket.id)
       setPrePath([[boat.position.lat, boat.position.lng], [e.latlng.lat, e.latlng.lng]])
