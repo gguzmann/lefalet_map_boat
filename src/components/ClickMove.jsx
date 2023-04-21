@@ -1,7 +1,7 @@
 import { useMapEvent } from 'react-leaflet'
 import * as turf from '@turf/turf'
-import continent from '../continent.json'
-import { socket } from '../socket'
+import continent from '../geojson/continent.json'
+import { socket } from '../utils/socket'
 
 export const ClickMove = ({ setColorPath, setPrePath, boats, move }) => {
   useMapEvent({
