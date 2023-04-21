@@ -30,8 +30,10 @@ export const BoatPrefab = ({ datos, player, move, setMove, setPath }) => {
       // console.log('movement', markerPosition)
 
       if (markerPosition[0] === clickPosition[0] && markerPosition[1] === clickPosition[1]) {
-        setMove(false)
-        setPath([])
+        if (player) {
+          setMove(false)
+          setPath([])
+        }
       }
     }, 300)
 
