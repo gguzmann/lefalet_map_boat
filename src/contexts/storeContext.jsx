@@ -9,12 +9,16 @@ export function StoreProvider ({ children }) {
     id: '',
     name: ''
   })
-
+  const [energy, setEnergy] = useState(100)
   const setName = (name) => {
     setUser({ ...user, name })
   }
+
+  const changeEnergy = (count) => {
+    setEnergy(energy => energy + count)
+  }
   return (
-    <storeContext.Provider value={{ user, setName }}>
+    <storeContext.Provider value={{ user, setName, changeEnergy, energy, setEnergy }}>
       {children}
     </storeContext.Provider>
   )

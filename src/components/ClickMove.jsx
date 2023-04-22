@@ -2,11 +2,14 @@ import { useMapEvent } from 'react-leaflet'
 import * as turf from '@turf/turf'
 import continent from '../geojson/continent.json'
 import { socket } from '../utils/socket'
+import { useStore } from '../contexts/storeContext'
 
 export const ClickMove = ({ setColorPath, setPrePath, boats, move }) => {
+  const { energy } = useStore()
   useMapEvent({
     click: (e) => {
     //   console.log([e.latlng.lat, e.latlng.lng])
+      if (energy < 1) return false
       if (move) return false
       const boat = boats.find(x => x.id === socket.id)
       setPrePath([[boat.position.lat, boat.position.lng], [e.latlng.lat, e.latlng.lng]])
