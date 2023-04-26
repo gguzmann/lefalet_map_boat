@@ -19,3 +19,16 @@
   /* height: 80vh; */
   /* background-color: white; */
 }
+
+
+.my-icon {
+  width: 1vw; /* Ancho del icono como un porcentaje de la anchura de la ventana gráfica */
+  height: 1vw; /* Altura del icono como un porcentaje de la anchura de la ventana gráfica */
+}
+
+.my-icon-content {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: blue;
+}

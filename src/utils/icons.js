@@ -1,4 +1,5 @@
-import L from 'leaflet'
+import L, { Icon } from 'leaflet'
+
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 
 export const iconLocation = L.icon({
@@ -6,6 +7,12 @@ export const iconLocation = L.icon({
   iconRetinaUrl: markerIcon,
   iconAnchor: [12, 45],
   popupAnchor: [10, -44]
+})
+
+export const myIcon = L.divIcon({
+  className: 'my-icon',
+  html: '<div class="my-icon-content"></div>',
+  iconSize: [10, 10]
 })
 
 export const customMarker = L.icon({

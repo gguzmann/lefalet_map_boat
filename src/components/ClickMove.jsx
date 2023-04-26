@@ -4,9 +4,9 @@ import continent from '../geojson/continent.json'
 import { socket } from '../utils/socket'
 import { useStore } from '../contexts/storeContext'
 
-export const ClickMove = ({ setColorPath, setPrePath, boats, move }) => {
+export const ClickMove = ({ setColorPath, setPrePath, boats, move, setZoom }) => {
   const { energy } = useStore()
-  useMapEvent({
+  const map = useMapEvent({
     click: (e) => {
     //   console.log([e.latlng.lat, e.latlng.lng])
       if (energy < 1) return false
@@ -34,6 +34,10 @@ export const ClickMove = ({ setColorPath, setPrePath, boats, move }) => {
       } else {
         setColorPath('red')
       }
+    },
+    zoomend: (e) => {
+      setZoom(map.getZoom())
     }
+
   })
 }
