@@ -49,7 +49,7 @@ export const BoatPrefab = ({ datos, player, move, setMove, setPath }) => {
         ref={marker}
       >
         <Popup>{'Hello, there! ⛵ '}</Popup>
-        <Tooltip permanent direction='top' offset={[20, -20]} opacity={0.5}>{datos.name}</Tooltip>
+        <Tooltip permanent direction='top' offset={[20, -20]} opacity={0.5} className=''>{datos.name}</Tooltip>
       </LeafletTrackingMarker>
     </>
   )

@@ -1,4 +1,4 @@
-import L, { Icon } from 'leaflet'
+import L from 'leaflet'
 
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 
@@ -16,9 +16,9 @@ export const myIcon = L.divIcon({
 })
 
 export const customMarker = L.icon({
-  iconUrl: './pirate.png',
-  iconRetinaUrl: './pirate.png',
-  iconSize: [60, 30]
+  iconUrl: 'https://img.icons8.com/color/256/treasure-chest.png',
+  iconRetinaUrl: 'https://img.icons8.com/color/256/treasure-chest.png',
+  iconSize: [30, 30]
 })
 
 export const enemyIcon = L.icon({
@@ -32,13 +32,3 @@ export const playerIcon = L.icon({
   iconRetinaUrl: './ship.png',
   iconSize: [60, 30]
 })
-// export const VenueLocationIcon = L.icon({
-//     iconUrl: require('../assets/venue_location_icon.svg'),
-//     iconRetinaUrl: require('../assets/venue_location_icon.svg'),
-//     iconAnchor: null,
-//     shadowUrl: null,
-//     shadowSize: null,
-//     shadowAnchor: null,
-//     iconSize: [35, 35],
-//     className: 'leaflet-venue-icon'
-//   });

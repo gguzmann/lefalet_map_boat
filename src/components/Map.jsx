@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, GeoJSON, Polyline, Marker, Popup, ImageOverlay } from 'react-leaflet'
-import oceans from '../geojson/oceans.json'
+import { MapContainer, GeoJSON, Polyline } from 'react-leaflet'
 import continent from '../geojson/continent.json'
 import { BoatPrefab } from './BoatPrefab'
 import { ClickMove } from './ClickMove'
 import { socket } from '../utils/socket'
-import { customMarker, myIcon } from '../utils/icons'
-import { generateSquare, getDistanceFromLatLonInKm, onEachFeature } from '../utils/questions'
+import { getDistanceFromLatLonInKm } from '../utils/questions'
 import { QuestionJson } from './Questions/QuestionJson'
 
 const Map = () => {
@@ -16,6 +14,7 @@ const Map = () => {
   const [prePath, setPrePath] = useState([])
   const [colorPath, setColorPath] = useState('red')
   const [zoom, setZoom] = useState(7)
+  const [positionsQuestion, setPositionsQuestion] = useState([])
 
   useEffect(() => {
     console.log(getDistanceFromLatLonInKm(13.408904896098697, -70.62011718750001, -77.69531250000001, 15.411319377981005), 'KM')
@@ -36,19 +35,28 @@ const Map = () => {
     socket.on('disconn', users => {
       showBoats(users, socket.id)
     })
+
+    socket.on('questionsPosition', (positions) => {
+      setPositionsQuestion(position => positions)
+      console.log('quiestion Position', positions.length)
+    })
   }, [])
 
   const center = [13.408904896098697, -77.69531250000001]
   return (
     <>
-      <MapContainer id='map' center={center} zoom={7} scrollWheelZoom={false} zoomControl minZoom={2} zoomAnimation={false}>
+      <MapContainer id='map' center={center} zoom={6} scrollWheelZoom={false} zoomControl minZoom={2} zoomAnimation={false}>
         {/* <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png'
         /> */}
         {
           boats.length > 0 &&
-          boats.map(boat => <BoatPrefab key={boat.id} datos={boat} data={boat.position} player={boat.player} move={move} setMove={setMove} setPath={setPath} />)
+            boats.map(boat => <BoatPrefab key={boat.id} datos={boat} data={boat.position} player={boat.player} move={move} setMove={setMove} setPath={setPath} />)
+        }
+        {
+          boats.length > 0 &&
+            <QuestionJson boat={boats.find(x => x.id === socket.id).position} positions={positionsQuestion} zoom={zoom} />
         }
 
         <Polyline positions={path} dashArray={10} />
@@ -57,8 +65,11 @@ const Map = () => {
         {/* <GeoJSON data={oceans} eventHandlers={{ click: (e) => clickMove(e) }} /> */}
         <GeoJSON data={continent} />
         {/* <GeoJSON data={generateSquare([center[1], center[0]], 0.1, 0.1)} /> */}
+        {
 
-        <QuestionJson boat={boats.length > 0 ? boats[0].position : center} zoom={zoom} />
+          // getRandomPosition(300).map((x, i) => <Marker key={i} position={x} />)
+          // positionsQuestion.map((x, i) => <Marker key={i} position={x} />)
+        }
 
         <ClickMove
           setPrePath={setPrePath}
